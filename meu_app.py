@@ -43,19 +43,10 @@ with st.container():
     st.write('---')
     st.title('Outliers')
     st.write('gráfico de boxplot da coluna numérica FactValueNumeric')
-#     df = px.data.iris()
-#     fig = px.scatter(
-#     df,
-#     x="FactValueNumeric",
-#     y="",
-#     color="sepal_length",
-#     color_continuous_scale="reds",
-# )
-#     tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
-# with tab1:
-#     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-# with tab2:
-#     st.plotly_chart(fig, theme=None, use_container_width=True)
+    fig = plt.figure(figsize=[10,5])
+    plt.boxplot(df['FactValueNumeric'])
+    plt.xticks([1],['FactValueNumeric'])
+    st.pyplot(fig)
     
 with st.container():
     st.write('---')
@@ -67,14 +58,284 @@ with st.container():
     st.write('Verificação do valor máximo de PM2,5')
     st.write(df.FactValueNumeric.max())
 
+with st.container(): #VER COM BRUNO
+    st.write('---')
+    st.write('PM2.5 ao longo do tempo no Brasil')
+    df_brazil = df[(df['Location'] == 'Brazil') & (df.Dim1 == 'Total')]
+    x = df_brazil.Period
+    y = df_brazil.FactValueNumeric
+    fig = plt.figure(figsize=[10,5])
+    plt.plot(x,y)
+    plt.title('PM2.5 ao longo do tempo no Brasil')
+    plt.xlabel('Anos')
+    plt.ylabel('PM2.5')
+    st.pyplot(fig)
+
 with st.container():
     st.write('---')
-    st.title('Análise')
-    st.write('Total de PM2,5 por ano no Brasil')
+    st.write('índices totais de PM2.5 por região')
     x = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['Period']
-    y = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric']
+    y_total = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric']
+    y_rural = df[(df['Dim1']=='Rural') & (df['Location']=='Brazil')]['FactValueNumeric']
+    y_cities = df[(df['Dim1']=='Cities') & (df['Location']=='Brazil')]['FactValueNumeric']
+    y_towns = df[(df['Dim1']=='Towns') & (df['Location']=='Brazil')]['FactValueNumeric']
+    y_urban = df[(df['Dim1']=='Urban') & (df['Location']=='Brazil')]['FactValueNumeric']
+    fig = plt.figure(figsize=([10,5]))
+    plt.plot(x,y_total, label="Total")
+    plt.plot(x,y_rural, label="Rural")
+    plt.plot(x,y_cities, label="Cities")
+    plt.plot(x,y_towns, label="Towns")
+    plt.plot(x,y_urban, label="Urban")
+    plt.legend()
+    plt.legend()
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 Países com Maiores Índices de PM2.5')
+    
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
+        y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
+        y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
+        y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
     plt.bar(x,y)
-    plt.show()
-    # st.bar_chart(df, x='Dim1'=='Total' & 'Location'=='Brazil'['Period'], y='Dim1'=='Total' & 'Location'=='Brazil'['FactValueNumeric'])
-    # st.bar_chart(df, x='Dim1'=='Total'and 'Location'=='Brazil'['Period'], y='Dim1'=='Total'and 'Location'=='Brazil'['FactValueNumeric'])
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 Países com menores Índices de PM2.5')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises2")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
+        y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
+        y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
+        y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 piores cidades de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises3")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
+        y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
+        y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
+        y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 melhores cidades de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises4")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
+        y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
+        y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
+        y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 piores regiões rurais de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises5")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
+        y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
+        y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
+        y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 melhores regiões rurais de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises6")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
+        y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
+        y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
+        y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 piores cidades pequenas de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises7")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
+        y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
+        y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
+        y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 melhores cidades pequenas de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises8")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
+        y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
+        y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
+        y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 piores regiões urbanas de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises9")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
+        y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
+        y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
+        y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Top 5 melhores regiões urbanas de países para se viver')
+    qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises10")
+    qtd_maior_paises = int(qtd)
+    if qtd_maior_paises==5:
+        x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
+        y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
+        fig = plt.figure(figsize=([10,5]))
+    elif qtd_maior_paises==10:
+        x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
+        y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
+        fig = plt.figure(figsize=([13,5]))
+    elif qtd_maior_paises==15:
+        x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
+        y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
+        fig = plt.figure(figsize=([25,5]))
+    
+    plt.bar(x,y)
+    plt.ylabel('Média de PM2,5')
+    plt.xticks(rotation = 45)
+    st.pyplot(fig)
+
+with st.container():
+    st.write('---')
+    st.write('Média de PM2.5 do Brasil')
+    st.write(df_brazil.FactValueNumeric.mean())
+
+with st.container():
+    st.write('---')
+    st.write('Média Total de PM2.5 de todos os países')
+    st.write(df[df.Dim1 == 'Total'].FactValueNumeric.mean())
+
+with st.container():
+    st.write('---')
+    st.write('Desvio Padrão')
+    st.write(df[df.Dim1 == 'Total'].FactValueNumeric.std())
+
+
+    
    
