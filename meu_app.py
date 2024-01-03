@@ -88,6 +88,7 @@ with st.container():
     plt.plot(x,y_urban, label="Urban")
     plt.legend()
     plt.legend()
+    plt.ylabel('Média de PM2.5')
     st.pyplot(fig)
 
 with st.container():
@@ -110,7 +111,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -133,7 +134,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -156,7 +157,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -179,7 +180,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -202,7 +203,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -225,7 +226,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -248,7 +249,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -271,7 +272,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -294,7 +295,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -317,7 +318,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2,5')
+    plt.ylabel('Média de PM2.5')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
