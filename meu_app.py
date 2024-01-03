@@ -1,0 +1,4 @@
+import streamlit as st 
+st.set_page_config(page_title='TCC Thiago')
+
+st.write('ANÁLISE DESCRITIVA E EXPLORATÓRIA DOS ÍNDICES ANUAIS DE PM2,5 DISPONIBILIZADOS EM RELATÓRIO DA ORGANIZAÇÃO MUNDIAL DE SAÚDE')
