@@ -60,6 +60,7 @@ with st.container():
 
 with st.container(): #VER COM BRUNO
     st.write('---')
+    st.title('Análise')
     st.write('PM2.5 ao longo do tempo no Brasil')
     df_brazil = df[(df['Location'] == 'Brazil') & (df.Dim1 == 'Total')]
     x = df_brazil.Period
