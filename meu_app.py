@@ -58,7 +58,7 @@ with st.container():
     st.write('Verificação do valor máximo de PM2,5')
     st.write(df.FactValueNumeric.max())
 
-with st.container(): #VER COM BRUNO
+with st.container(): 
     st.write('---')
     st.title('Análise')
     st.write('PM2.5 ao longo do tempo no Brasil')
@@ -71,6 +71,16 @@ with st.container(): #VER COM BRUNO
     plt.xlabel('Anos')
     plt.ylabel('PM2.5')
     st.pyplot(fig)
+
+with st.container(): 
+    st.write('---')
+    st.write('Menor valor de PM2.5 no Brasil registrado ao longo dos anos')
+    st.write(df_brazil.FactValueNumeric.min())
+
+with st.container(): 
+    st.write('---')
+    st.write('Maior valor de PM2.5 no Brasil registrado ao longo dos anos')
+    st.write(df_brazil.FactValueNumeric.max())
 
 with st.container():
     st.write('---')
