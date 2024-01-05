@@ -84,6 +84,11 @@ with st.container():
 
 with st.container():
     st.write('---')
+    st.write('Média de PM2.5 do Brasil')
+    st.write(df_brazil.FactValueNumeric.mean())
+
+with st.container():
+    st.write('---')
     st.write('índices totais de PM2.5 por região')
     x = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['Period']
     y_total = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric']
@@ -151,7 +156,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 piores cidades de países para se viver')
+    st.write('Gráfico com os cinco países com maiores índices de PM2,5 em cidades grandes')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises3")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -174,7 +179,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 melhores cidades de países para se viver')
+    st.write('Gráfico com os cinco países com menores índices de PM2,5 em cidades grandes')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises4")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -197,7 +202,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 piores regiões rurais de países para se viver')
+    st.write('Gráfico com os cinco países com maiores índices de PM2,5 nas regiões rurais')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises5")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -220,7 +225,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 melhores regiões rurais de países para se viver')
+    st.write('Gráfico com os cinco países com menores índices de PM2,5 nas regiões rurais')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises6")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -243,7 +248,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 piores cidades pequenas de países para se viver')
+    st.write('Gráfico com os cinco países com maiores índices de PM2,5 nas cidades pequenas')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises7")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -266,7 +271,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 melhores cidades pequenas de países para se viver')
+    st.write('Gráfico com os cinco países com menores índices de PM2,5 nas cidades pequenas')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises8")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -289,7 +294,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 piores regiões urbanas de países para se viver')
+    st.write('Gráfico com os cinco países com maiores índices de PM2,5 nas regiões urbanas')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises9")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -312,7 +317,7 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Top 5 melhores regiões urbanas de países para se viver')
+    st.write('Gráfico com os cinco países com menores índices de PM2,5 nas regiões urbanas')
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises10")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
@@ -335,11 +340,6 @@ with st.container():
 
 with st.container():
     st.write('---')
-    st.write('Média de PM2.5 do Brasil')
-    st.write(df_brazil.FactValueNumeric.mean())
-
-with st.container():
-    st.write('---')
     st.write('Média Total de PM2.5 de todos os países')
     st.write(df[df.Dim1 == 'Total'].FactValueNumeric.mean())
 
@@ -347,7 +347,3 @@ with st.container():
     st.write('---')
     st.write('Desvio Padrão')
     st.write(df[df.Dim1 == 'Total'].FactValueNumeric.std())
-
-
-    
-   
