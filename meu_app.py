@@ -50,12 +50,12 @@ with st.container():
     
 with st.container():
     st.write('---')
-    st.write('Verificação do valor mínimo de PM2,5')
+    st.write('Verificação do valor mínimo de PM2,5 (µg/m³)')
     st.write(df.FactValueNumeric.min())
 
 with st.container():
     st.write('---')
-    st.write('Verificação do valor máximo de PM2,5')
+    st.write('Verificação do valor máximo de PM2,5 (µg/m³)')
     st.write(df.FactValueNumeric.max())
 
 with st.container(): 
@@ -69,22 +69,22 @@ with st.container():
     plt.plot(x,y)
     plt.title('PM2.5 ao longo do tempo no Brasil')
     plt.xlabel('Anos')
-    plt.ylabel('PM2.5')
+    plt.ylabel('PM2.5 (µg/m³)')
     st.pyplot(fig)
 
 with st.container(): 
     st.write('---')
-    st.write('Menor valor de PM2.5 no Brasil registrado ao longo dos anos')
+    st.write('Menor valor de PM2.5 no Brasil registrado ao longo dos anos (µg/m³)')
     st.write(df_brazil.FactValueNumeric.min())
 
 with st.container(): 
     st.write('---')
-    st.write('Maior valor de PM2.5 no Brasil registrado ao longo dos anos')
+    st.write('Maior valor de PM2.5 no Brasil registrado ao longo dos anos (µg/m³)')
     st.write(df_brazil.FactValueNumeric.max())
 
 with st.container():
     st.write('---')
-    st.write('Média de PM2.5 do Brasil')
+    st.write('Média de PM2.5 do Brasil (µg/m³)')
     st.write(df_brazil.FactValueNumeric.mean())
 
 with st.container():
@@ -104,7 +104,7 @@ with st.container():
     plt.plot(x,y_urban, label="Urban")
     plt.legend()
     plt.legend()
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     st.pyplot(fig)
 
 with st.container():
@@ -127,7 +127,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -150,7 +150,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -173,7 +173,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -196,7 +196,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -219,7 +219,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -242,7 +242,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -265,7 +265,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -288,7 +288,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -311,7 +311,7 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
@@ -334,13 +334,13 @@ with st.container():
         fig = plt.figure(figsize=([25,5]))
     
     plt.bar(x,y)
-    plt.ylabel('Média de PM2.5')
+    plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
 
 with st.container():
     st.write('---')
-    st.write('Média Total de PM2.5 de todos os países')
+    st.write('Média Total de PM2.5 de todos os países (µg/m³)')
     st.write(df[df.Dim1 == 'Total'].FactValueNumeric.mean())
 
 with st.container():
