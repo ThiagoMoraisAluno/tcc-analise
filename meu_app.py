@@ -111,22 +111,43 @@ with st.container():
     st.write('---')
     st.write('Top 5 Países com Maiores Índices de PM2.5')
     
+    
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
         x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
         y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
         y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
         y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -134,22 +155,43 @@ with st.container():
 with st.container():
     st.write('---')
     st.write('Top 5 Países com menores Índices de PM2.5')
+    
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises2")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
         x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
         y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
         y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
         y = df[df.Dim1 == 'Total'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Total') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -157,22 +199,43 @@ with st.container():
 with st.container():
     st.write('---')
     st.write('Gráfico com os cinco países com maiores índices de PM2,5 em cidades grandes')
+    
     qtd = st.selectbox("Selecione a quantidade", ["5", "10", "15"], key="selectbox_paises3")
     qtd_maior_paises = int(qtd)
     if qtd_maior_paises==5:
         x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
         y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Cities') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
         y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Cities') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
         y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Cities') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -186,16 +249,36 @@ with st.container():
         x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
         y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Cities') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
         y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Cities') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
         y = df[df.Dim1 == 'Cities'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Cities') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -209,16 +292,36 @@ with st.container():
         x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
         y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Rural') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
         y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Rural') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
         y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Rural') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -232,16 +335,36 @@ with st.container():
         x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
         y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Rural') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
         y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Rural') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
         y = df[df.Dim1 == 'Rural'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Rural') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -255,16 +378,36 @@ with st.container():
         x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
         y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Towns') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
         y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Towns') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
         y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Towns') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -277,17 +420,37 @@ with st.container():
     if qtd_maior_paises==5:
         x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
         y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
-        fig = plt.figure(figsize=([10,5]))
+        fig = plt.figure(figsize=([10,6]))
+        media_brazil = df[(df['Dim1']=='Towns') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
         y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
-        fig = plt.figure(figsize=([13,5]))
+        fig = plt.figure(figsize=([13,6]))
+        media_brazil = df[(df['Dim1']=='Towns') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
         y = df[df.Dim1 == 'Towns'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
-        fig = plt.figure(figsize=([25,5]))
+        fig = plt.figure(figsize=([25,6]))
+        media_brazil = df[(df['Dim1']=='Towns') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -301,16 +464,36 @@ with st.container():
         x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).index
         y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Urban') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).index
         y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Urban') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).index
         y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=False).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Urban') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
@@ -324,16 +507,36 @@ with st.container():
         x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).index
         y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(5).values
         fig = plt.figure(figsize=([10,5]))
+        media_brazil = df[(df['Dim1']=='Urban') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(5):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==10:
         x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).index
         y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(10).values
         fig = plt.figure(figsize=([13,5]))
+        media_brazil = df[(df['Dim1']=='Urban') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(10):
+            y_brazil.append(media_brazil)
     elif qtd_maior_paises==15:
         x = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).index
         y = df[df.Dim1 == 'Urban'].groupby('Location')['FactValueNumeric'].mean().sort_values(ascending=True).head(15).values
         fig = plt.figure(figsize=([25,5]))
+        media_brazil = df[(df['Dim1']=='Urban') & (df['Location']=='Brazil')]['FactValueNumeric'].mean()
+
+        y_brazil = []
+
+        for valor in range(15):
+            y_brazil.append(media_brazil)
     
-    plt.bar(x,y)
+    plt.bar(x,y, color='skyblue', label ='Países')
+    plt.plot(x,y_brazil, color='brown', label='Brasil')
+    plt.legend()
     plt.ylabel('Média de PM2.5 (µg/m³)')
     plt.xticks(rotation = 45)
     st.pyplot(fig)
